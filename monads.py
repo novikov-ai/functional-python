@@ -30,12 +30,7 @@ def show(state:Maybe):
 begin = lambda: Just((0,0))
 
 def simulate():
-    state = begin()
-    state = state.bind(lambda pos: to_left(3)(*pos))
-    show(state) # ok: (3, 0)
-    state = state.bind(lambda pos: to_right(5)(*pos))
-    show(state) # ok: (3, 5)
-    state = state.bind(banana)
+    state = begin().bind(lambda pos: to_left(3)(*pos)).bind(lambda pos: to_right(5)(*pos))
     show(state) # falled :(
 
 simulate()
